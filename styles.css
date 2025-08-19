@@ -3192,6 +3192,45 @@ html {
     opacity: 0.9;
 }
 
+/* Calendar Styles */
+.calendar-section input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.calendar-section input[type="date"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.time-slot-section select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    transition: var(--transition);
+    background-color: white;
+}
+
+.time-slot-section select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.time-slot-section optgroup {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.time-slot-section option {
+    padding: 8px;
+}
+
 /* Responsive Design for Gallery */
 @media (max-width: 768px) {
     .gallery-hero {

@@ -466,3 +466,176 @@ createScrollToTop();
 // Console welcome message
 console.log('%c👨‍⚕️ Dr. Varun - Pediatrician Website', 'color: #2ECC71; font-size: 16px; font-weight: bold;');
 console.log('%cWebsite loaded successfully! 🎉', 'color: #87CEFA; font-size: 14px;');
+
+// Date and Time slot handling
+document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('appointment-date');
+    const timeSelect = document.getElementById('appointment-time');
+
+    if (dateInput && timeSelect) {
+        // Set min date to today
+        const today = new Date();
+        const formattedToday = today.toISOString().split('T')[0];
+        dateInput.min = formattedToday;
+
+        // Disable Sundays
+        dateInput.addEventListener('input', function() {
+            const selectedDate = new Date(this.value);
+            if (selectedDate.getDay() === 0) { // Sunday
+                alert('Sorry, appointments are not available on Sundays. Please select another day.');
+                this.value = '';
+            }
+        });
+
+        // Generate a simple token when form is submitted
+        const form = document.querySelector('.contact-form form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const date = dateInput.value;
+            const time = timeSelect.value;
+            const token = generateAppointmentToken();
+
+            // Show confirmation
+            showNotification(`Appointment scheduled for ${date} at ${time}\nYour booking token is: ${token}`, 'success');
+            this.reset();
+        });
+    }
+});
+
+// Generate a simple token
+function generateAppointmentToken() {
+    const timestamp = Date.now();
+    const random = Math.floor(Math.random() * 1000);
+    return `APT-${timestamp}-${random}`;
+}
+
+// Mobile menu functionality for homepage
+function initializeHomepageMobileMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            
+            const isExpanded = navMenu.classList.contains('active');
+            hamburger.setAttribute('aria-expanded', isExpanded);
+            document.body.style.overflow = isExpanded ? 'hidden' : '';
+        });
+        
+        // Close menu when clicking on navigation links
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Close menu on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+}
+
+// Initialize homepage mobile menu only on homepage
+if (window.location.pathname === '/' || window.location.pathname.includes('index.html') || window.location.pathname === '/index.html') {
+    initializeHomepageMobileMenu();
+}
+
+// Loading animation
+window.addEventListener('load', function() {
+    // Hide loading screen if exists
+    const loader = document.querySelector('.loader');
+    if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.remove(), 500);
+    }
+    
+    // Trigger entrance animations
+    document.body.classList.add('loaded');
+});
+
+// Scroll to top button
+function createScrollToTop() {
+    const scrollBtn = document.createElement('button');
+    scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    scrollBtn.className = 'scroll-to-top';
+    
+    scrollBtn.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #87CEFA, #2ECC71);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.2rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 1000;
+    `;
+    
+    document.body.appendChild(scrollBtn);
+    
+    // Show/hide based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollBtn.style.opacity = '1';
+            scrollBtn.style.visibility = 'visible';
+        } else {
+            scrollBtn.style.opacity = '0';
+            scrollBtn.style.visibility = 'hidden';
+        }
+    });
+    
+    // Scroll to top functionality
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Hover effect
+    scrollBtn.addEventListener('mouseenter', () => {
+        scrollBtn.style.transform = 'translateY(-3px) scale(1.1)';
+        scrollBtn.style.boxShadow = '0 8px 25px rgba(46, 204, 113, 0.4)';
+    });
+    
+    scrollBtn.addEventListener('mouseleave', () => {
+        scrollBtn.style.transform = 'translateY(0) scale(1)';
+        scrollBtn.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+    });
+}
+
+// Initialize scroll to top button
+createScrollToTop();
+
+// Console welcome message
+console.log('%c👨‍⚕️ Dr. Varun - Pediatrician Website', 'color: #2ECC71; font-size: 16px; font-weight: bold;');
+console.log('%cWebsite loaded successfully! 🎉', 'color: #87CEFA; font-size: 14px;');

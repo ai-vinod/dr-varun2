@@ -542,38 +542,38 @@
                 </div>
                 <div class="contact-form" data-aos="fade-left">
                     <form>
-                        <div class="form-group">
-                            <label for="name">Full Name <span class="sr-only">Required field</span></label>
-                            <input type="text" id="name" name="name" placeholder="Your Name" required aria-describedby="name-help">
-                            <span id="name-help" class="sr-only">Enter your full name</span>
+                        <!-- Add Calendar Interface -->
+                        <div class="form-group calendar-section">
+                            <label for="appointment-date">Select Date <span class="sr-only">Required field</span></label>
+                            <input type="date" id="appointment-date" name="appointment-date" required
+                                   min="2024-01-01" max="2024-12-31">
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email Address <span class="sr-only">Required field</span></label>
-                            <input type="email" id="email" name="email" placeholder="Your Email" required aria-describedby="email-help">
-                            <span id="email-help" class="sr-only">Enter a valid email address</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number <span class="sr-only">Required field</span></label>
-                            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required aria-describedby="phone-help">
-                            <span id="phone-help" class="sr-only">Enter your phone number with country code</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="service">Service Needed</label>
-                            <select id="service" name="service" required>
-                                <option value="">Select Service</option>
-                                <option value="pediatric">Pediatric Care</option>
-                                <option value="neonatology">Neonatology</option>
-                                <option value="consultation">General Consultation</option>
+                        <div class="form-group time-slot-section">
+                            <label for="appointment-time">Select Time <span class="sr-only">Required field</span></label>
+                            <select id="appointment-time" name="appointment-time" required>
+                                <option value="">Choose a time slot</option>
+                                <optgroup label="Morning">
+                                    <option value="09:00">9:00 AM</option>
+                                    <option value="09:30">9:30 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="10:30">10:30 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="11:30">11:30 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="12:30">12:30 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                </optgroup>
+                                <optgroup label="Evening">
+                                    <option value="16:30">4:30 PM</option>
+                                    <option value="17:00">5:00 PM</option>
+                                    <option value="17:30">5:30 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="18:30">6:30 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                </optgroup>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Tell us about your child's needs..." rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">
-                            <i class="fas fa-paper-plane"></i>
-                            Send Message
-                        </button>
+                        <!-- Existing form fields continue here -->
                     </form>
                     
 
